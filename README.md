@@ -12,5 +12,9 @@ At this point, I have got the frontend looking okay and have the ability to sear
 
 Next stage is to learn about web scraping and over the next few days will return to this repo armed with somethings to try.
 
+Few things I have learned - can scrape in a few different ways, using node can be done using a few dependencies which I have installed (cheerios, axios and express).
+
+Havent found an exact tutorial for express and nextjs yet, so will have a look at the docs then try and find a video later
+
 
 

@@ -2,14 +2,20 @@
   "name": "nextjs-first",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "express": "nodemon ../nextjs-first/pages/_app",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.1",
     "next": "12.2.3",
+    "nodemon": "^2.0.19",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
