@@ -5,10 +5,12 @@ import Button from './../components/Button';
 
 function MyApp({ Component, pageProps }) {
   return (
+    <div>
     <Layout>
       <Component {...pageProps} />
  
     </Layout>
+    </div>
   )
 }
 
