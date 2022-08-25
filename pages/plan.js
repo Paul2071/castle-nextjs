@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CastleList() {
+function Plan() {
   return (
      <div>
     <h1>Castles I plan to visit</h1>
@@ -10,4 +10,4 @@ function CastleList() {
   )
 }
 
-export default CastleList
+export default Plan

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function About() {
+function Visited() {
   return (
     <div>
     <h1>Castles I have visited</h1>
@@ -10,4 +10,4 @@ function About() {
   )
 }
 
-export default About
+export default Visited
