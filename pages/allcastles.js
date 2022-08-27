@@ -1,45 +1,50 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React from "react";
+import { useEffect, useState } from "react";
 
 function AllCastles() {
+  const [allCastles, setAllCastles] = useState(null);
+  const [ paginationNumber, setPaginationNumber] = useState(0)
 
+  function handleClick() {
+    console.log(allCastles)
+    console.log(allCastles[0]._id);
+    console.log(allCastles[0].type);
+    console.log(allCastles[0].castle);
+    console.log(paginationNumber)
+    setPaginationNumber(paginationNumber + 1)
+  }
 
-  async function getAllCastlesEngland () {
-    const allCastles = []
-    const response = await fetch(
-               `http://localhost:3000/castles/all`
-              );
-              const data = await response.json();
-              console.log(data)
-              allCastles.push(data)  
-              console.log(allCastles)
-            }
-            
-   
+  useEffect(() => {
+    async function getAllCastlesEngland() {
+      const response = await fetch(`http://localhost:3000/castles/p/?pg=${paginationNumber}`);
+      const data = await response.json();
+      console.log("useEffect fired");
+
+      if (response.ok) {
+        setAllCastles(data)
+      }
+    }
+
+    getAllCastlesEngland();
+  }, [paginationNumber]);
 
   
 
-
-    // useEffect(() => {
-    //     const getAllCastlesEngland = async () => {
-    //       const response = await fetch(
-    //        'http://localhost:3000/castles/all'
-    //       );
-    //       const data = await response.json();
-    //       console.log(data.payload);
-    //     };
-    //     getAllCastlesEngland();
-    //   }, []);
-
-
   return (
     <div>
-    <h1>All castles in England</h1>
-    <button onClick={getAllCastlesEngland}> GET ALL CASTLES</button>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum eius doloribus voluptatem quo quam laudantium provident odit alias doloremque, hic quibusdam accusantium incidunt, architecto repellendus illum sunt! Mollitia, eveniet sequi.</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis dolores deleniti earum voluptas facere, soluta quam aperiam esse ducimus ab in impedit sint beatae fugit sunt illum, autem, aliquam ex.</p>
-    </div>
-  )
+      <h1>All castles in England</h1>
+     <div> 
+     {allCastles && allCastles.map((castle) => (
 
-  }
-export default AllCastles
+        <p key={castle._id}><button>TEST</button>{castle.castle}</p>
+        
+     ))
+      }
+      <button onClick={handleClick}> LOAD MORE</button>
+      </div>
+     
+    </div>
+  );
+}
+
+export default AllCastles;

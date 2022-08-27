@@ -1,5 +1,14 @@
 A brief overview of this project:
 
+Update: 25/8/2022
+
+Sacked off the webscraping for now. Discovered mongodb and decided to incorporate that into this project. Once I have the routes set up and the front end doign what I want it to do, I will have a choice whether to try and scrape the data I want or to populate it manually...
+
+Next step, pagination.
+
+
+//Initial brief below
+
 I have a long list of things I want to play around with in tech, clsoe to top of that list is Next.js and web scraping.
 
 I thought to combine the two and throw in something I am interested in too - in this case, castles.
