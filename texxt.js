@@ -1,1 +1,0 @@
-import from "../nextjs-first/pages/_app"
