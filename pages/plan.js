@@ -28,7 +28,7 @@ function Plan() {
       const response = await fetch(`http://localhost:3000/castles/${haveVisitedCastle}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ visited: "yes" })
+          body: JSON.stringify({ visited: "yes", addtovisit: "no" })
         });
         const data = await response.json()
         console.log("hello from plan to vist page")

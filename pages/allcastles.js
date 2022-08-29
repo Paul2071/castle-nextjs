@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 
 
 function AllCastles() {
-  const [allCastles, setAllCastles] = useState(null);
-  const [ paginationNumber, setPaginationNumber] = useState(0)
-  const [addingCastletToVisit, setAddingCastletToVisit] = useState("test")
+  const [ allCastles, setAllCastles ] = useState(null);
+  const [ paginationNumber, setPaginationNumber ] = useState(0)
+  const [ addingCastleToVisit, setAddingCastleToVisit ] = useState("test")
 
   function loadNextOnClick() {
     setPaginationNumber(paginationNumber + 1)
@@ -18,25 +18,25 @@ function AllCastles() {
   }
 
   function handleClick () {
-    console.log(addingCastletToVisit)
+    console.log(addingCastleToVisit)
   }
 
 //add a castle to plan to visit page
 useEffect (()=> {
   async function AddCastleToVisitPage() {
-    const response = await fetch(`http://localhost:3000/castles/${addingCastletToVisit}`, {
+    const response = await fetch(`http://localhost:3000/castles/${addingCastleToVisit}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ addtovisit: "yes" })
       });
       const data = await response.json()
       console.log("hello there")
-      console.log(addingCastletToVisit)
+      console.log(addingCastleToVisit)
       
       
     }
     AddCastleToVisitPage()
-}, [addingCastletToVisit])
+}, [addingCastleToVisit])
 
 
 
@@ -68,7 +68,7 @@ useEffect (()=> {
      <div> 
      {allCastles && allCastles.map((castle) => (
 
-        <p key={castle._id}><button onClick={()=> setAddingCastletToVisit(castle._id)}> Plan to Visit </button>{castle.castle}</p>
+        <p key={castle._id}><button onClick={()=> setAddingCastleToVisit(castle._id)}> Plan to Visit </button>{castle.castle}</p>
         
      ))
       }
