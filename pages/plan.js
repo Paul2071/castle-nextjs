@@ -25,7 +25,7 @@ function Plan() {
    //add castle to visited page
    useEffect (()=> {
     async function AddToHaveVisitedPage() {
-      const response = await fetch(`http://localhost:3000/castles/${haveVisitedCastle}`, {
+      const response = await fetch(`https://evening-ridge-18162.herokuapp.com/castles/${haveVisitedCastle}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ visited: "yes", addtovisit: "no" })
@@ -43,7 +43,7 @@ function Plan() {
   //get all of the castles that I plan to visit
   useEffect(() => {
     async function getCastlesPlanToVisit() {
-      const response = await fetch(`http://localhost:3000/castles/plan/all/p/?pg=${paginationNumber}`);
+      const response = await fetch(`https://evening-ridge-18162.herokuapp.com/castles/plan/all/p/?pg=${paginationNumber}`);
       const data = await response.json();
       console.log("useEffect fired");
 

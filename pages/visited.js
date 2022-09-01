@@ -23,7 +23,7 @@ function Visited() {
   useEffect(() => {
     async function RemoveCastleFromVistied() {
       const response = await fetch(
-        `http://localhost:3000/castles/${removeFromVisit}`,
+        `https://evening-ridge-18162.herokuapp.com/castles/${removeFromVisit}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -39,7 +39,7 @@ function Visited() {
   useEffect(() => {
     async function GetAllVisitedCastles() {
       const response = await fetch(
-        `http://localhost:3000/castles/visit/all/p/?pg=${paginationNumber}`
+        `https://evening-ridge-18162.herokuapp.com/castles/visit/all/p/?pg=${paginationNumber}`
       );
       const data = await response.json();
       console.log("useEffect fired");
