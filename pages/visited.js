@@ -29,11 +29,24 @@ function Visited() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ visited: "no" }),
         }
-      );
+      ).then(() => {
+        async function GetAllVisitedCastles() {
+          const response = await fetch(
+            `https://evening-ridge-18162.herokuapp.com/castles/visit/all/p/?pg=${paginationNumber}`
+          );
+          const data = await response.json();
+          console.log("useEffect fired");
+    
+          if (response.ok) {
+            setAllVisitedCastles(data);
+          }
+        }
+        GetAllVisitedCastles();
+      }, [paginationNumber])
     }
 
-    RemoveCastleFromVistied();
-  }, [removeFromVisit]);
+    RemoveCastleFromVistied()
+  }, [removeFromVisit, paginationNumber]);
 
   //get all castles that have the key value pair of visited: "yes"
   useEffect(() => {
