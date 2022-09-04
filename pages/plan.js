@@ -17,7 +17,15 @@ function Plan() {
   }
 
   function handleClick() {
-    console.log(haveVisitedCastle);
+    async function checkPostCode() {
+      const response = await fetch(
+        `https://remote.address44.com/v2/exapi/?access-key=1WN5WP19UUKN5SDRGJ_196_133_5VTO31CUO_AJMYDIQLMEGY66&postcode=LE52lu`,
+        {
+          method: "POST",
+        }
+      ).then(console.log(response));
+    }
+    checkPostCode().then(console.log("I fired"));
   }
 
   //add castle to visited page
@@ -37,15 +45,14 @@ function Plan() {
           );
           const data = await response.json();
           console.log("useEffect fired");
-    
+
           if (response.ok) {
             setToVisitCastles(data);
           }
         }
-    
+
         getCastlesPlanToVisit();
-      })
-           
+      });
     }
     AddToHaveVisitedPage();
   }, [haveVisitedCastle, paginationNumber]);
@@ -78,7 +85,7 @@ function Plan() {
                 {" "}
                 Have Visited{" "}
               </button>
-              {castle.castle}
+              {castle.castle} 
             </p>
           ))}
         <button onClick={loadPreviousOnClick}> PREVIOUS</button>

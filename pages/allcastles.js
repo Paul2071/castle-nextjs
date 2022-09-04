@@ -68,7 +68,14 @@ useEffect (()=> {
      <div> 
      {allCastles && allCastles.map((castle) => (
 
-        <p key={castle._id}><button onClick={()=> setAddingCastleToVisit(castle._id)}> Plan to Visit </button>{castle.castle}</p>
+       
+
+        <tr key={castle._id}>
+      <td> <button onClick={()=> setAddingCastleToVisit(castle._id)}> + </button>{castle.castle}</td>
+      <td>{castle.location}</td>
+      <td>{castle.type}</td>
+      <td>{castle.condition}</td>
+    </tr>
         
      ))
       }
