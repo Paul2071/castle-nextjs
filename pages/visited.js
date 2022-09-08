@@ -1,11 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import PageTitle from "../components/PageTitle";
 
 function Visited() {
   const [paginationNumber, setPaginationNumber] = useState(0);
   const [allVisitedCastles, setAllVisitedCastles] = useState();
   const [removeFromVisit, setRemoveFromVisit] = useState();
-
+  const [loading, setLoading] = useState(false)
   function loadNextOnClick() {
     setPaginationNumber(paginationNumber + 1);
   }
@@ -59,6 +60,7 @@ function Visited() {
 
       if (response.ok) {
         setAllVisitedCastles(data);
+        setLoading(true)
       }
     }
     GetAllVisitedCastles();
@@ -66,15 +68,33 @@ function Visited() {
 
   return (
     <div>
-      <h1>Castles I have visited</h1>
+     <PageTitle text="Castles I have visited" title="Castles Visited"/>
+
+     <table>
+        <thead>
+          <tr>
+            <th >Name</th>
+            <th>Location</th>
+            <th>Type</th>
+            <th>Condition </th>
+            <th>Remove from list </th>
+          </tr>
+        </thead>
+        <p hidden={loading}> Fetching Castles...</p>
       {allVisitedCastles &&
         allVisitedCastles.map((castle) => (
-          <p key={castle._id}>
-            {castle.castle}
+          <tr  key={castle._id}>
+              <td>{castle.castle}</td>
+              <td>{castle.location}</td>
+              <td>{castle.type}</td>
+              <td>{castle.condition}</td>
+              <td>     
             <button onClick={() => setRemoveFromVisit(castle._id)}>X</button>
-          </p>
+            </td>
+            </tr>     
         ))}
-
+      
+      </table>    
       <button onClick={loadPreviousOnClick}> PREVIOUS</button>
       <button onClick={resetCastlesOnClick}> RESET</button>
       <button onClick={loadNextOnClick}> NEXT</button>

@@ -1,10 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import PageTitle from "../components/PageTitle";
+import styles from "../styles/Home.module.css";
 
 function Plan() {
   const [toVisitCastles, setToVisitCastles] = useState(null);
   const [paginationNumber, setPaginationNumber] = useState(0);
   const [haveVisitedCastle, setHaveVisitedCastle] = useState(0);
+  const [loading, setLoading] = useState(false)
 
   function loadNextOnClick() {
     setPaginationNumber(paginationNumber + 1);
@@ -68,6 +71,7 @@ function Plan() {
 
       if (response.ok) {
         setToVisitCastles(data);
+        setLoading(true)
       }
     }
 
@@ -76,24 +80,46 @@ function Plan() {
 
   return (
     <div>
-      <h1>Castles I plan to visit</h1>
-      <div>
+    <PageTitle text="Castles I plan to visit" title="Plan to visit"/>
+    <table >
+        <thead>
+          <tr>
+            <th >Name</th>
+            <th>Location</th>
+            <th>Type</th>
+            <th>Condition </th>
+            <th>Have visited </th>
+          </tr>
+        </thead>
+     <p hidden={loading}> Fetching Castles...</p>
+
         {toVisitCastles &&
           toVisitCastles.map((castle) => (
-            <p key={castle._id}>
+            
+            <tr  key={castle._id}>
+              <td>{castle.castle}</td>
+              <td>{castle.location}</td>
+              <td>{castle.type}</td>
+              <td>{castle.condition}</td>
+              <td>   
+            
               <button onClick={() => setHaveVisitedCastle(castle._id)}>
                 {" "}
-                Have Visited{" "}
+               +{" "}
               </button>
-              {castle.castle} 
-            </p>
+              </td>
+            </tr>
+             
           ))}
-        <button onClick={loadPreviousOnClick}> PREVIOUS</button>
-        <button onClick={resetCastlesOnClick}> RESET</button>
-        <button onClick={loadNextOnClick}> NEXT</button>
-        <button onClick={handleClick}> TEST</button>
+          </table>
+          <div className={styles.btngroup}> 
+            <button  onClick={loadPreviousOnClick}> PREVIOUS</button>
+            <button onClick={resetCastlesOnClick}> RESET</button>
+            <button onClick={loadNextOnClick}> NEXT</button>
+            <button onClick={handleClick}> TEST</button>
+        </div>
       </div>
-    </div>
+   
   );
 }
 
