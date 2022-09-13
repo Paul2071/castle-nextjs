@@ -1,34 +1,18 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Button from "../components/Button";
-import InputField from "../components/Input";
 import styles from "../styles/Home.module.css";
+import AuthContext from "./../context/authorisation.js";
 
 export default function Home() {
-  const [userInput, setUserInput] = useState("");
-
-  function onChange(e) {
-    setUserInput(e.target.value);
-  }
+  
+  const { user, login, logout } = useContext(AuthContext);
 
   return (
     <div className={styles.inputbtncontainer}>
       <h1 className={styles.title}>Castle-logue</h1>
 
-      <div>
-        <InputField type={"text"} onChange={onChange}></InputField>
-
-        <a
-          href={`https://en.wikipedia.org/wiki/List_of_castles_in_${userInput}`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Button text={"SEARCH"}></Button>
-        </a>
-      </div>
-      <p className={styles.text}>
-        Enter a country in the input and press search to be taken to Wikipedias
-        entry for castles on that particular country.
-      </p>
+      <Button text={"LOGIN / SIGNUP"} onClick={login}></Button>
+      <Button text={"LOGOUT"} onClick={logout}></Button>
     </div>
   );
 }

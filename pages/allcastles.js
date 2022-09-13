@@ -1,7 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import BasicButtonGroup from "../components/MuiButton";
 import PageTitle from "../components/PageTitle";
 import styles from "../styles/Home.module.css";
+
 
 
 function AllCastles() {
@@ -61,7 +63,7 @@ function AllCastles() {
   }, [paginationNumber]);
 
   return (
-    <div>
+    <div className={styles.maincontainer}>
       <PageTitle text="All castles in England" title="All Castles"/>
 
       <table>
@@ -90,11 +92,18 @@ function AllCastles() {
             </tr>
           ))}
       </table>
-        <div> 
-          <button onClick={loadPreviousOnClick}> PREVIOUS</button>
-          <button onClick={resetCastlesOnClick}> RESET</button>
-          <button onClick={loadNextOnClick}> NEXT</button>
-          <button onClick={handleClick}> TEST</button>
+        <div > 
+        <BasicButtonGroup
+          texta={"PREVIOUS"}
+          textb={"RESET"}
+          textc={"NEXT"}
+          textd={"TEXT"}
+          onClicka={loadPreviousOnClick}
+          onClickb={resetCastlesOnClick}
+          onClickc={loadNextOnClick}
+          onClickd={handleClick}
+        />
+         
         </div>  
     </div>
   );

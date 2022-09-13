@@ -1,12 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import BasicButtonGroup from "../components/MuiButton";
 import PageTitle from "../components/PageTitle";
+import styles from "../styles/Home.module.css";
 
 function Visited() {
   const [paginationNumber, setPaginationNumber] = useState(0);
   const [allVisitedCastles, setAllVisitedCastles] = useState();
   const [removeFromVisit, setRemoveFromVisit] = useState();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+
   function loadNextOnClick() {
     setPaginationNumber(paginationNumber + 1);
   }
@@ -18,7 +21,7 @@ function Visited() {
   }
 
   function handleClick() {
-    console.log(removeFromVisit);
+    console.log(user);
   }
 
   useEffect(() => {
@@ -37,16 +40,16 @@ function Visited() {
           );
           const data = await response.json();
           console.log("useEffect fired");
-    
+
           if (response.ok) {
             setAllVisitedCastles(data);
           }
         }
         GetAllVisitedCastles();
-      }, [paginationNumber])
+      }, [paginationNumber]);
     }
 
-    RemoveCastleFromVistied()
+    RemoveCastleFromVistied();
   }, [removeFromVisit, paginationNumber]);
 
   //get all castles that have the key value pair of visited: "yes"
@@ -60,20 +63,20 @@ function Visited() {
 
       if (response.ok) {
         setAllVisitedCastles(data);
-        setLoading(true)
+        setLoading(true);
       }
     }
     GetAllVisitedCastles();
   }, [paginationNumber]);
 
   return (
-    <div>
-     <PageTitle text="Castles I have visited" title="Castles Visited"/>
+    <div className={styles.maincontainer}>
+      <PageTitle text="Castles I have visited" title="Castles Visited" />
 
-     <table>
+      <table>
         <thead>
           <tr>
-            <th >Name</th>
+            <th>Name</th>
             <th>Location</th>
             <th>Type</th>
             <th>Condition </th>
@@ -81,24 +84,33 @@ function Visited() {
           </tr>
         </thead>
         <p hidden={loading}> Fetching Castles...</p>
-      {allVisitedCastles &&
-        allVisitedCastles.map((castle) => (
-          <tr  key={castle._id}>
+        {allVisitedCastles &&
+          allVisitedCastles.map((castle) => (
+            <tr key={castle._id}>
               <td>{castle.castle}</td>
               <td>{castle.location}</td>
               <td>{castle.type}</td>
               <td>{castle.condition}</td>
-              <td>     
-            <button onClick={() => setRemoveFromVisit(castle._id)}>X</button>
-            </td>
-            </tr>     
-        ))}
-      
-      </table>    
-      <button onClick={loadPreviousOnClick}> PREVIOUS</button>
-      <button onClick={resetCastlesOnClick}> RESET</button>
-      <button onClick={loadNextOnClick}> NEXT</button>
-      <button onClick={handleClick}> TEST</button>
+              <td>
+                <button onClick={() => setRemoveFromVisit(castle._id)}>
+                  X
+                </button>
+              </td>
+            </tr>
+          ))}
+      </table>
+      <div>
+        <BasicButtonGroup
+          texta={"PREVIOUS"}
+          textb={"RESET"}
+          textc={"NEXT"}
+          textd={"TEXT"}
+          onClicka={loadPreviousOnClick}
+          onClickb={resetCastlesOnClick}
+          onClickc={loadNextOnClick}
+          onClickd={handleClick}
+        />
+      </div>
     </div>
   );
 }
