@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import BasicButtonGroup from "../components/MuiButton";
+//import BasicButtonGroup from "../components/MuiButton";
 import PageTitle from "../components/PageTitle";
 import styles from "../styles/Home.module.css";
 
@@ -82,11 +82,11 @@ function Visited() {
             <th>Condition </th>
             <th>Remove from list </th>
           </tr>
+          {/* <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
-          <td hidden={loading}> Fetching Castles...</td>
-          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td> */}
         </thead>
         
         {allVisitedCastles &&
@@ -105,7 +105,7 @@ function Visited() {
           ))}
       </table>
       <div>
-        <BasicButtonGroup
+        {/* <BasicButtonGroup
           texta={"PREVIOUS"}
           textb={"RESET"}
           textc={"NEXT"}
@@ -114,7 +114,7 @@ function Visited() {
           onClickb={resetCastlesOnClick}
           onClickc={loadNextOnClick}
           onClickd={handleClick}
-        />
+        /> */}
       </div>
     </div>
   );

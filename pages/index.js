@@ -5,7 +5,7 @@ import AuthContext from "./../context/authorisation.js";
 
 export default function Home() {
   
-  const { user, login, logout } = useContext(AuthContext);
+ const { user, login, logout } = useContext(AuthContext);
 
   return (
     <div className={styles.inputbtncontainer}>

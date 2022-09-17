@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import BasicButtonGroup from "../components/MuiButton";
+//import BasicButtonGroup from "../components/MuiButton";
 import PageTitle from "../components/PageTitle";
 import styles from "../styles/Home.module.css";
 
@@ -67,6 +67,7 @@ function AllCastles() {
       <PageTitle text="All castles in England" title="All Castles"/>
 
       <table>
+      
         <thead>
           <tr>
             <th >Name</th>
@@ -75,16 +76,16 @@ function AllCastles() {
             <th>Condition </th>
             <th>Plan to visit </th>
           </tr>
+          {/* <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}   > Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
-          <td hidden={loading}> Fetching Castles...</td>
-          <td hidden={loading}> Fetching Castles...</td>
-          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td> */}
         </thead>
         
         {allCastles &&
           allCastles.map((castle) => (
-            <tr  key={castle._id}>
+            <tr  key={castle._id} >
               <td>{castle.castle}</td>
               <td>{castle.location}</td>
               <td>{castle.type}</td>
@@ -96,9 +97,10 @@ function AllCastles() {
               </td>
             </tr>
           ))}
+         
       </table>
         <div > 
-        <BasicButtonGroup
+        {/* <BasicButtonGroup
           texta={"PREVIOUS"}
           textb={"RESET"}
           textc={"NEXT"}
@@ -107,7 +109,7 @@ function AllCastles() {
           onClickb={resetCastlesOnClick}
           onClickc={loadNextOnClick}
           onClickd={handleClick}
-        />
+        /> */}
          
         </div>  
     </div>

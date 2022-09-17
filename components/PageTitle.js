@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default function PageTitle({text, title}) {
+
+function PageTitle({text, title}) {
   return (
     <div>
     <title>{title}</title>
@@ -8,3 +9,6 @@ export default function PageTitle({text, title}) {
     </div>
   )
 }
+
+
+export default PageTitle
