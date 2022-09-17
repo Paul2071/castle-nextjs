@@ -82,8 +82,13 @@ function Visited() {
             <th>Condition </th>
             <th>Remove from list </th>
           </tr>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
         </thead>
-        <p hidden={loading}> Fetching Castles...</p>
+        
         {allVisitedCastles &&
           allVisitedCastles.map((castle) => (
             <tr key={castle._id}>

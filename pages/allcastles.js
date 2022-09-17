@@ -75,8 +75,13 @@ function AllCastles() {
             <th>Condition </th>
             <th>Plan to visit </th>
           </tr>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
         </thead>
-        <p hidden={loading}> Fetching Castles...</p>
+        
         {allCastles &&
           allCastles.map((castle) => (
             <tr  key={castle._id}>

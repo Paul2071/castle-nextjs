@@ -91,8 +91,13 @@ function Plan() {
             <th>Condition </th>
             <th>Have visited </th>
           </tr>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
         </thead>
-        <p hidden={loading}> Fetching Castles...</p>
+        
 
         {toVisitCastles &&
           toVisitCastles.map((castle) => (
