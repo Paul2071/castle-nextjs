@@ -1,5 +1,23 @@
 A brief overview of this project:
 
+update: 17/9/22
+
+Well. Sorted pagination. Easy. Done. Restyled to add a rather fetching green if I do say so myself. Also Easy, also Done.
+
+Started to add authentication via Netlify Identity - seems to work! Can log in and out. Need to add permissions to different users. Easy. Done.
+
+HOWEVER. Made some cool fancy changes, pushed to main as worked on localserver, build failed. Not done?
+
+So, stripped some of the fancy changes out figuring out what is causing the build fail.
+
+Narrowed it down to: MUI ButtonGroup OR the loading message when fetching castles.
+
+
+
+
+
+
+
 Update: 25/8/2022
 
 Sacked off the webscraping for now. Discovered mongodb and decided to incorporate that into this project. Once I have the routes set up and the front end doign what I want it to do, I will have a choice whether to try and scrape the data I want or to populate it manually...

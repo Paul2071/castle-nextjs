@@ -1,11 +1,11 @@
-import { useContext } from "react";
+import  {useContext}  from "react";
 import Button from "../components/Button";
 import styles from "../styles/Home.module.css";
 import AuthContext from "./../context/authorisation.js";
 
 export default function Home() {
   
-  const { user, login, logout } = useContext(AuthContext);
+ const { user, login, logout } = useContext(AuthContext);
 
   return (
     <div className={styles.inputbtncontainer}>

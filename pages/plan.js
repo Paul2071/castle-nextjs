@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import BasicButtonGroup from "../components/MuiButton";
+//import BasicButtonGroup from "../components/MuiButton";
 import PageTitle from "../components/PageTitle";
 import styles from "../styles/Home.module.css";
 
@@ -91,8 +91,13 @@ function Plan() {
             <th>Condition </th>
             <th>Have visited </th>
           </tr>
+          {/* <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td> */}
         </thead>
-        <p hidden={loading}> Fetching Castles...</p>
+        
 
         {toVisitCastles &&
           toVisitCastles.map((castle) => (
@@ -111,7 +116,7 @@ function Plan() {
           ))}
       </table>
       <div className={styles.btngroup}>
-        <BasicButtonGroup
+        {/* <BasicButtonGroup
           texta={"PREVIOUS"}
           textb={"RESET"}
           textc={"NEXT"}
@@ -120,7 +125,7 @@ function Plan() {
           onClickb={resetCastlesOnClick}
           onClickc={loadNextOnClick}
           onClickd={handleClick}
-        />
+        /> */}
       </div>
     </div>
   );
