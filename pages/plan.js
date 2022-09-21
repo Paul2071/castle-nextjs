@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Button from "../components/Button";
 //import BasicButtonGroup from "../components/MuiButton";
 import PageTitle from "../components/PageTitle";
 import styles from "../styles/Home.module.css";
@@ -115,6 +116,12 @@ function Plan() {
             </tr>
           ))}
       </table>
+      <div className={styles.btncontainer}>
+      
+            <Button text={"PREVIOUS"} onClick={loadPreviousOnClick} ></Button>
+            <Button text={"RESET"} onClick={resetCastlesOnClick} ></Button>
+            <Button text={"NEXT"} onClick={loadNextOnClick} ></Button>
+        </div> 
       <div className={styles.btngroup}>
         {/* <BasicButtonGroup
           texta={"PREVIOUS"}

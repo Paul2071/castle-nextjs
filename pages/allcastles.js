@@ -1,6 +1,8 @@
+//import { Button } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
-//import BasicButtonGroup from "../components/MuiButton";
+import Button from "../components/Button.js";
+//import BasicButtonGroup from "../components/MuiButton.js";
 import PageTitle from "../components/PageTitle";
 import styles from "../styles/Home.module.css";
 
@@ -76,11 +78,11 @@ function AllCastles() {
             <th>Condition </th>
             <th>Plan to visit </th>
           </tr>
-          {/* <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}   > Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
-          <td hidden={loading}> Fetching Castles...</td> */}
+          <td hidden={loading}> Fetching Castles...</td>
         </thead>
         
         {allCastles &&
@@ -99,7 +101,12 @@ function AllCastles() {
           ))}
          
       </table>
-        <div > 
+        <div className={styles.btncontainer}>
+            <Button text={"PREVIOUS"} onClick={loadPreviousOnClick} ></Button>
+            <Button text={"RESET"} onClick={resetCastlesOnClick} ></Button>
+            <Button text={"NEXT"} onClick={loadNextOnClick} ></Button>
+        </div>   
+
         {/* <BasicButtonGroup
           texta={"PREVIOUS"}
           textb={"RESET"}
@@ -111,7 +118,7 @@ function AllCastles() {
           onClickd={handleClick}
         /> */}
          
-        </div>  
+
     </div>
   );
 }
