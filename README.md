@@ -1,5 +1,22 @@
 A brief overview of this project:
 
+BUGS: 
+BUILD ERROR: "Error: Minified React error #130" is the main error message when I use netlify build and seems to be caused by mui
+
+LOCALHOST ERROR: "Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: object" - weirdly, if I navgiate to another page of the localhost, then back to the one that caused the error it works fine. Again, something to do with the MUI code is the culprit here.
+
+
+
+Update 21/9/22
+
+The hydration bug doesnt affect deployment so I am going to put a pin in solving that for now. 
+
+The build error bug looks to be caused by MUI, so I have decided to take that out of the app for now. 
+
+So, this update I have had a look at the CSS - styled buttons, added classnames to the login page divs and generally tidied up the the CSS classes as well as chase a few bugs.
+
+Next step I will try and finish Authentication then write a few tests as that will be my MVP done!
+
 update: 17/9/22
 
 Well. Sorted pagination. Easy. Done. Restyled to add a rather fetching green if I do say so myself. Also Easy, also Done.
@@ -11,6 +28,7 @@ HOWEVER. Made some cool fancy changes, pushed to main as worked on localserver, 
 So, stripped some of the fancy changes out figuring out what is causing the build fail.
 
 Narrowed it down to: MUI ButtonGroup OR the loading message when fetching castles.
+Both have been taken out and using Netlify CLI build it seems to work.
 
 
 

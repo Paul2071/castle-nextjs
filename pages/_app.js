@@ -4,12 +4,7 @@ import "../styles/globals.css";
 import Button from "./../components/Button";
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <AuthorisationContext>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </AuthorisationContext>
+  return (<AuthorisationContext><Layout><Component {...pageProps} /></Layout></AuthorisationContext>
   );
 }
 
