@@ -1,10 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Button from "../components/Button";
+//import BasicButtonGroup from "../components/MuiButton";
+import PageTitle from "../components/PageTitle";
+import styles from "../styles/Home.module.css";
 
 function Plan() {
   const [toVisitCastles, setToVisitCastles] = useState(null);
   const [paginationNumber, setPaginationNumber] = useState(0);
   const [haveVisitedCastle, setHaveVisitedCastle] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   function loadNextOnClick() {
     setPaginationNumber(paginationNumber + 1);
@@ -17,7 +22,15 @@ function Plan() {
   }
 
   function handleClick() {
-    console.log(haveVisitedCastle);
+    async function checkPostCode() {
+      const response = await fetch(
+        `https://remote.address44.com/v2/exapi/?access-key=1WN5WP19UUKN5SDRGJ_196_133_5VTO31CUO_AJMYDIQLMEGY66&postcode=LE52lu`,
+        {
+          method: "POST",
+        }
+      ).then(console.log(response));
+    }
+    checkPostCode().then(console.log("I fired"));
   }
 
   //add castle to visited page
@@ -37,15 +50,14 @@ function Plan() {
           );
           const data = await response.json();
           console.log("useEffect fired");
-    
+
           if (response.ok) {
             setToVisitCastles(data);
           }
         }
-    
+
         getCastlesPlanToVisit();
-      })
-           
+      });
     }
     AddToHaveVisitedPage();
   }, [haveVisitedCastle, paginationNumber]);
@@ -61,6 +73,7 @@ function Plan() {
 
       if (response.ok) {
         setToVisitCastles(data);
+        setLoading(true);
       }
     }
 
@@ -68,23 +81,58 @@ function Plan() {
   }, [paginationNumber]);
 
   return (
-    <div>
-      <h1>Castles I plan to visit</h1>
-      <div>
+    <div className={styles.maincontainer}>
+      <PageTitle text="Castles I plan to visit" title="Plan to visit" />
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Type</th>
+            <th>Condition </th>
+            <th>Have visited </th>
+          </tr>
+          {/* <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td> */}
+        </thead>
+        
+
         {toVisitCastles &&
           toVisitCastles.map((castle) => (
-            <p key={castle._id}>
-              <button onClick={() => setHaveVisitedCastle(castle._id)}>
-                {" "}
-                Have Visited{" "}
-              </button>
-              {castle.castle}
-            </p>
+            <tr key={castle._id}>
+              <td>{castle.castle}</td>
+              <td>{castle.location}</td>
+              <td>{castle.type}</td>
+              <td>{castle.condition}</td>
+              <td>
+                <button onClick={() => setHaveVisitedCastle(castle._id)}>
+                  {" "}
+                  +{" "}
+                </button>
+              </td>
+            </tr>
           ))}
-        <button onClick={loadPreviousOnClick}> PREVIOUS</button>
-        <button onClick={resetCastlesOnClick}> RESET</button>
-        <button onClick={loadNextOnClick}> NEXT</button>
-        <button onClick={handleClick}> TEST</button>
+      </table>
+      <div className={styles.btncontainer}>
+      
+            <Button text={"PREVIOUS"} onClick={loadPreviousOnClick} ></Button>
+            <Button text={"RESET"} onClick={resetCastlesOnClick} ></Button>
+            <Button text={"NEXT"} onClick={loadNextOnClick} ></Button>
+        </div> 
+      <div className={styles.btngroup}>
+        {/* <BasicButtonGroup
+          texta={"PREVIOUS"}
+          textb={"RESET"}
+          textc={"NEXT"}
+          textd={"TEXT"}
+          onClicka={loadPreviousOnClick}
+          onClickb={resetCastlesOnClick}
+          onClickc={loadNextOnClick}
+          onClickd={handleClick}
+        /> */}
       </div>
     </div>
   );
