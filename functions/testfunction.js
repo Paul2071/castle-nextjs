@@ -3,7 +3,7 @@ const { handleClientScriptLoad } = require("next/script")
 exports.handler = async () => {
     console.log("test it ran")
 
-    const data = { paul: hello}
+    const data = { name: "hello"}
 
     return {
         statusCode: 200,
