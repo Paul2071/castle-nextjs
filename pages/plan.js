@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import PageTitle from "../components/PageTitle";
 import styles from "../styles/Home.module.css";
 
+
 function Plan() {
   const [toVisitCastles, setToVisitCastles] = useState(null);
   const [paginationNumber, setPaginationNumber] = useState(0);
@@ -21,17 +22,7 @@ function Plan() {
     setPaginationNumber(0);
   }
 
-  function handleClick() {
-    async function checkPostCode() {
-      const response = await fetch(
-        `https://remote.address44.com/v2/exapi/?access-key=1WN5WP19UUKN5SDRGJ_196_133_5VTO31CUO_AJMYDIQLMEGY66&postcode=LE52lu`,
-        {
-          method: "POST",
-        }
-      ).then(console.log(response));
-    }
-    checkPostCode().then(console.log("I fired"));
-  }
+
 
   //add castle to visited page
   useEffect(() => {
@@ -80,6 +71,20 @@ function Plan() {
     getCastlesPlanToVisit();
   }, [paginationNumber]);
 
+
+
+  //fetch to the netlify function endpoint that will fire whatever the testfunction netlify function is
+
+  useEffect(() =>{
+    async function fireNetlifyFunction () {
+      const response = await fetch('/.netlify/functions/testfunction');
+      const data = await response.json();
+    //  {data && console.log(data)}
+    console.log(data)
+    }
+    fireNetlifyFunction()
+  }, [])
+
   return (
     <div className={styles.maincontainer}>
       <PageTitle text="Castles I plan to visit" title="Plan to visit" />
@@ -92,13 +97,12 @@ function Plan() {
             <th>Condition </th>
             <th>Have visited </th>
           </tr>
-          {/* <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
-          <td hidden={loading}> Fetching Castles...</td> */}
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
         </thead>
-        
 
         {toVisitCastles &&
           toVisitCastles.map((castle) => (
@@ -117,11 +121,10 @@ function Plan() {
           ))}
       </table>
       <div className={styles.btncontainer}>
-      
-            <Button text={"PREVIOUS"} onClick={loadPreviousOnClick} ></Button>
-            <Button text={"RESET"} onClick={resetCastlesOnClick} ></Button>
-            <Button text={"NEXT"} onClick={loadNextOnClick} ></Button>
-        </div> 
+        <Button text={"PREVIOUS"} onClick={loadPreviousOnClick}></Button>
+        <Button text={"RESET"} onClick={resetCastlesOnClick}></Button>
+        <Button text={"NEXT"} onClick={loadNextOnClick}></Button>
+      </div>
       <div className={styles.btngroup}>
         {/* <BasicButtonGroup
           texta={"PREVIOUS"}
