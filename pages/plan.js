@@ -1,10 +1,10 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Button from "../components/Button";
 //import BasicButtonGroup from "../components/MuiButton";
 import PageTitle from "../components/PageTitle";
 import styles from "../styles/Home.module.css";
-
+import AuthContext from "../context/authorisation";
 
 function Plan() {
   const [toVisitCastles, setToVisitCastles] = useState(null);
@@ -21,8 +21,6 @@ function Plan() {
   function resetCastlesOnClick() {
     setPaginationNumber(0);
   }
-
-
 
   //add castle to visited page
   useEffect(() => {
@@ -71,19 +69,21 @@ function Plan() {
     getCastlesPlanToVisit();
   }, [paginationNumber]);
 
-
-
   //fetch to the netlify function endpoint that will fire whatever the testfunction netlify function is
 
-  useEffect(() =>{
-    async function fireNetlifyFunction () {
-      const response = await fetch('/.netlify/functions/testfunction');
-      const data = await response.json();
-    //  {data && console.log(data)}
-    console.log(data)
+  const { user, authReady } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (authReady) {
+      fetch("/.netlify/functions/bearertoken", user && {
+        headers: {
+          Authorization: "Bearer " + user.token.access_token
+        }
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
     }
-    fireNetlifyFunction()
-  }, [])
+  }, [user, authReady ]);
 
   return (
     <div className={styles.maincontainer}>
@@ -97,15 +97,16 @@ function Plan() {
             <th>Condition </th>
             <th>Have visited </th>
           </tr>
+          {/* <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
-          <td hidden={loading}> Fetching Castles...</td>
-          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td> */}
         </thead>
 
         {toVisitCastles &&
           toVisitCastles.map((castle) => (
+            
             <tr key={castle._id}>
               <td>{castle.castle}</td>
               <td>{castle.location}</td>
