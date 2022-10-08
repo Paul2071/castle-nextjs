@@ -1,9 +1,10 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Button from "../components/Button";
 //import BasicButtonGroup from "../components/MuiButton";
 import PageTitle from "../components/PageTitle";
 import styles from "../styles/Home.module.css";
+import AuthContext from "../context/authorisation";
 
 function Plan() {
   const [toVisitCastles, setToVisitCastles] = useState(null);
@@ -19,18 +20,6 @@ function Plan() {
   }
   function resetCastlesOnClick() {
     setPaginationNumber(0);
-  }
-
-  function handleClick() {
-    async function checkPostCode() {
-      const response = await fetch(
-        `https://remote.address44.com/v2/exapi/?access-key=1WN5WP19UUKN5SDRGJ_196_133_5VTO31CUO_AJMYDIQLMEGY66&postcode=LE52lu`,
-        {
-          method: "POST",
-        }
-      ).then(console.log(response));
-    }
-    checkPostCode().then(console.log("I fired"));
   }
 
   //add castle to visited page
@@ -80,6 +69,22 @@ function Plan() {
     getCastlesPlanToVisit();
   }, [paginationNumber]);
 
+  //fetch to the netlify function endpoint that will fire whatever the testfunction netlify function is
+
+  const { user, authReady } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (authReady) {
+      fetch("/.netlify/functions/bearertoken", user && {
+        headers: {
+          Authorization: "Bearer " + user.token.access_token
+        }
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+    }
+  }, [user, authReady ]);
+
   return (
     <div className={styles.maincontainer}>
       <PageTitle text="Castles I plan to visit" title="Plan to visit" />
@@ -98,10 +103,10 @@ function Plan() {
           <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td> */}
         </thead>
-        
 
         {toVisitCastles &&
           toVisitCastles.map((castle) => (
+            
             <tr key={castle._id}>
               <td>{castle.castle}</td>
               <td>{castle.location}</td>
@@ -117,11 +122,10 @@ function Plan() {
           ))}
       </table>
       <div className={styles.btncontainer}>
-      
-            <Button text={"PREVIOUS"} onClick={loadPreviousOnClick} ></Button>
-            <Button text={"RESET"} onClick={resetCastlesOnClick} ></Button>
-            <Button text={"NEXT"} onClick={loadNextOnClick} ></Button>
-        </div> 
+        <Button text={"PREVIOUS"} onClick={loadPreviousOnClick}></Button>
+        <Button text={"RESET"} onClick={resetCastlesOnClick}></Button>
+        <Button text={"NEXT"} onClick={loadNextOnClick}></Button>
+      </div>
       <div className={styles.btngroup}>
         {/* <BasicButtonGroup
           texta={"PREVIOUS"}

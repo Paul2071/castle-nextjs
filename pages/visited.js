@@ -83,11 +83,11 @@ function Visited() {
             <th>Condition </th>
             <th>Remove from list </th>
           </tr>
-          {/* <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
-          <td hidden={loading}> Fetching Castles...</td> */}
+          <td hidden={loading}> Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
         </thead>
         
         {allVisitedCastles &&

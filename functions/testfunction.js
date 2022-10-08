@@ -1,6 +1,4 @@
-const { handleClientScriptLoad } = require("next/script")
-
-exports.handler = async () => {
+export const handler = async () => {
     console.log("test it ran")
 
     const data = { name: "hello"}
