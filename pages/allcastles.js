@@ -32,7 +32,7 @@ function AllCastles() {
   useEffect(() => {
     async function AddCastleToVisitPage() {
       const response = await fetch(
-        `https://evening-ridge-18162.herokuapp.com/castles/${addingCastleToVisit}`,
+        `https://worried-red-outfit.cyclic.app/castles/${addingCastleToVisit}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -51,7 +51,7 @@ function AllCastles() {
     async function getAllCastlesEngland() {
       const response = await fetch(`https://worried-red-outfit.cyclic.app/castles/p/?pg=${paginationNumber}`);
       const data = await response.json();
-      console.log("useEffect fired");
+      console.log("useEffect getallcastles fired");
 
       if (response.ok) {
         setAllCastles(data);
@@ -77,7 +77,7 @@ function AllCastles() {
             <th>Plan to visit </th>
           </tr>
           <td hidden={loading}> Fetching Castles...</td>
-          <td hidden={loading}   > Fetching Castles...</td>
+          <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
           <td hidden={loading}> Fetching Castles...</td>
