@@ -26,7 +26,7 @@ function Plan() {
   useEffect(() => {
     async function AddToHaveVisitedPage() {
       const response = await fetch(
-        `https://evening-ridge-18162.herokuapp.com/castles/${haveVisitedCastle}`,
+        `https://worried-red-outfit.cyclic.app/castles/${haveVisitedCastle}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -35,7 +35,7 @@ function Plan() {
       ).then(() => {
         async function getCastlesPlanToVisit() {
           const response = await fetch(
-            `https://evening-ridge-18162.herokuapp.com/castles/plan/all/p/?pg=${paginationNumber}`
+            `https://worried-red-outfit.cyclic.app/castles/plan/all/p/?pg=${paginationNumber}`
           );
           const data = await response.json();
           console.log("useEffect fired");
@@ -55,7 +55,7 @@ function Plan() {
   useEffect(() => {
     async function getCastlesPlanToVisit() {
       const response = await fetch(
-        `https://evening-ridge-18162.herokuapp.com/castles/plan/all/p/?pg=${paginationNumber}`
+        `https://worried-red-outfit.cyclic.app/castles/plan/all/p/?pg=${paginationNumber}`
       );
       const data = await response.json();
       console.log("useEffect fired");
