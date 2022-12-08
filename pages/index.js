@@ -11,7 +11,7 @@ export default function Home() {
  <div>
       <h1 className={styles.title}>Castle-logue</h1>
     <div className={styles.title}>
-      <p> For those stumbling across this app, Authentication is not quite fully implemented yet. </p>
+      <p> For those stumbling across this app, Authentication is not quite fully implemented yet - logging in and out is the extent of its functionality right now. </p>
     </div>
 
    {authReady && ( 
