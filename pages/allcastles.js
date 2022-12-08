@@ -24,7 +24,7 @@ function AllCastles() {
 //add a castle to plan to visit page
 useEffect (()=> {
   async function AddCastleToVisitPage() {
-    const response = await fetch(`https://evening-ridge-18162.herokuapp.com/castles/${addingCastleToVisit}`, {
+    const response = await fetch(`https://worried-red-outfit.cyclic.app/castles/${addingCastleToVisit}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ addtovisit: "yes" })
@@ -48,7 +48,7 @@ useEffect (()=> {
   //get all castles in the db
   useEffect(() => {
     async function getAllCastlesEngland() {
-      const response = await fetch(`https://evening-ridge-18162.herokuapp.com/castles/p/?pg=${paginationNumber}`);
+      const response = await fetch(`https://worried-red-outfit.cyclic.app/castles/p/?pg=${paginationNumber}`);
       const data = await response.json();
       console.log("useEffect fired");
 
